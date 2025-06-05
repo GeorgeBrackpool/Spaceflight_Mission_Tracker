@@ -1,4 +1,198 @@
 body{
-    color: black;
+    color: white;
 
 }
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, span, div {
+  font-family: 'Titillium Web', Arial, Verdana, sans-serif;
+}
+
+/* LANDING PAGE */
+#landing-body{
+    background-image: url("/static/images/SpaceX-1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #1f1e1e;
+    min-height: 100vh;
+}
+
+@media only screen and (max-width: 767px) { 
+    #landing-body{
+        background-image: url("/static/images/SpaceX-1-mobileImage.jpg");
+    }
+}
+.flex-grid {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+@media (max-width: 400px) {
+  .flex-grid {
+    display: block;
+  }
+}
+.flex-grid-thirds {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.flex-grid-thirds .col {
+  width: 10%;
+}
+.custom-index-spacing
+{
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.action_button_1
+{
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5%;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  transition-duration: 0.4s;
+}
+.action_button_1:hover
+{
+  background-color:crimson;
+}
+
+.action_button_2
+{
+  color: white;
+  border-color: cadetblue;
+  background-color: darkslategray;
+  opacity: 0.2;
+  border-radius: 5%;
+  border-width: 2px;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  transition-duration: 0.4s;
+}
+.action_button_2,.span
+{
+  opacity: 1;
+}
+.action_button_2:hover
+{
+  background-color:darkcyan;
+}
+
+/* Landing page mission description container */
+.mission-container {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 0 1rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+    position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 16px 16px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.mission-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.mission-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .mission-content {
+    flex-direction: row;
+  }
+}
+
+.mission-patch {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.mission-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mission-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.mission-section p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.2rem;
+}
+
+/* LANDING PAGE END */
+
+/* MAIN FONT STYLING */
+.titillium-web-light {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.titillium-web-regular {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titillium-web-black {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+/* MAIN FONT STYLING END */

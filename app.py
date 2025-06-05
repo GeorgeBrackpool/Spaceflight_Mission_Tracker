@@ -10,7 +10,6 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev_secret_key")
 
 @app.route("/", methods=["GET"])
 def home():
-    flash("Secret key is working!")
     return render_template("index.html")
 
 

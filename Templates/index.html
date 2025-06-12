@@ -14,18 +14,20 @@ id="landing-body"
   <div class="col"><h2>Next SpaceX Mission:</h2></div>
 </div>
 <div class="flex-grid">
-  <div class="col"><h1>INPUT API HERE</h1></div>
+  <div class="col"><h1>{{mission.name}}</h1></div>
 </div>
 <div class="flex-grid-thirds">
-  <div class="col"><h2>INPUT TIME HERE</h2></div>
-  <div class="col"><span style="color: cadetblue; margin-right: 150px;">Launching</span></div>
+  <div class="col"><h2 class="heading-line">{{mission.date_utc}}</h2><h4 class="heading-line" style="color: cadetblue; margin-left: 100px;">Launching</h4></div>
 </div>
 <div class="flex-grid-thirds">
-  <div class="col"><button type="button" class="action_button_1">Watch Live</button></div>
-  <div class="col"><button type="button" class="action_button_2"><span>Mission Details</span></button></div>
+  <div class="col"><button type="button" class="action_button_1">Watch Live</button><button type="button" class="action_button_2" style="margin-left: 50px;">Mission Details</button></div>
 </div>
 
-<div class="mission-container">
+<!-- Toggle Button (Always Visible on Small Screens) -->
+<button class="toggle-mission" onclick="toggleMission()">🚀 Mission Info</button>
+
+<div class="mission-container" id="missionBox">
+<button class="close-mission" onclick="toggleMission()">✖</button>
   <h2>Mission Overview</h2>
   <div class="mission-content">
     <img src="starlink-patch.png" alt="Starlink Patch" class="mission-patch" />
@@ -34,31 +36,28 @@ id="landing-body"
       <div class="mission-section">
         <h3>Mission Description</h3>
         <p>
-          The next Starlink mission will launch a batch of satellites for SpaceX’s Starlink broadband constellation, which aims to provide high-speed internet access across the globe.
+          {{mission.description}}
         </p>
       </div>
 
       <div class="mission-section">
         <h3>Payload Details</h3>
-        <p>Payload: <strong>23</strong> Starlink satellites</p>
-        <p>Destination: Low Earth Orbit</p>
+        <p>Payload: <strong>{{mission.payload}}</strong></p>
+        <p>Destination: {{mission.payload_destination}}</p>
       </div>
       <div class="mission-grid">
         <div>
           <p class="label">Rocket</p>
-          <p>Falcon 9</p>
+          <p>{{mission.rocket}}</p>
         </div>
         <div>
           <p class="label">Launch Pad</p>
-          <p>Vandenberg Space Force Base SLC-4E</p>
-        </div>
-        <div>
-          <p class="label">Landing</p>
-          <p>Autonomous Spaceport Drone Ship</p>
+          <p>{{mission.launch_pad}}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script src="/static/script.js"></script>
 </body>
 {% endblock %}

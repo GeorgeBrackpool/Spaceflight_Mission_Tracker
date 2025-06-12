@@ -9,6 +9,12 @@ p, a, span, div {
   font-family: 'Titillium Web', Arial, Verdana, sans-serif;
 }
 
+/* Used for keeping heading elements on the same line. H tags are block by default. */
+.heading-line
+{
+  display: inline;
+}
+
 /* LANDING PAGE */
 #landing-body{
     background-image: url("/static/images/SpaceX-1.jpg");
@@ -55,32 +61,36 @@ p, a, span, div {
 {
   color: white;
   background-color: red;
+  border-color:gray;
   border: none;
   border-radius: 5%;
+  border-width: 2px;
   padding: 10px 25px;
+  margin-top: 2%;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: inline;
   font-size: 1.2rem;
   transition-duration: 0.4s;
 }
 .action_button_1:hover
 {
-  background-color:crimson;
+  background-color:#ff6961;
 }
 
 .action_button_2
 {
   color: white;
   border-color: cadetblue;
-  background-color: darkslategray;
+  background-color:steelblue;
   opacity: 0.2;
   border-radius: 5%;
   border-width: 2px;
   padding: 10px 25px;
+  margin-top: 2%;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: inline;
   font-size: 1.2rem;
   transition-duration: 0.4s;
 }
@@ -94,34 +104,82 @@ p, a, span, div {
 }
 
 /* Landing page mission description container */
+
+/* Toggle Button */
+.toggle-mission {
+  position: fixed;
+  bottom: 1rem;
+  z-index: 1001;
+  padding: 0.6rem 1.2rem;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Mission Container with Animation */
 .mission-container {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 1000px;
-  margin: 0 0 1rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-    position: fixed;
+  position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
   max-width: 1000px;
-  padding: 2rem;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(12px);
   border-radius: 16px 16px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
   color: white;
-  width: 90%;
-  left: 50%;
-  transform: translateX(-50%);
-
+  z-index: 1000;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+  max-height: 50vh;
+  overflow-y: auto;
+  display: block;
+  transition: bottom 0.4s ease-in-out;
 }
 
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .toggle-mission {
+    display: block;
+  }
+
+  .mission-container {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.9rem;
+    border-radius: 12px 12px 0 0;
+    max-height: 60vh;
+    bottom: -100%;
+    display: none;
+  }
+      /* When active */
+  .mission-container.show {
+    display: block;
+    bottom: 0;
+  }
+}
+/* Close button inside container */
+.close-mission {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+/* Optional hover effect */
+.close-mission:hover {
+  color: #ff6961;
+}
 .mission-container h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -136,6 +194,10 @@ p, a, span, div {
 @media (min-width: 768px) {
   .mission-content {
     flex-direction: row;
+  }
+  .close-mission
+  {
+    display: none;
   }
 }
 

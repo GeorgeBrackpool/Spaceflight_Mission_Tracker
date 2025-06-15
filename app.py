@@ -41,7 +41,23 @@ def getUpcomingMissions():
         launch_time = datetime.strptime(next_launch["net"], "%Y-%m-%dT%H:%M:%SZ")
         formatted_time = launch_time.strftime("%A, %d %B %Y at %H:%M UTC")
 
-        payload_info = get_payload_info(next_launch.get("mission",{}).get("description", "No description available for this launch.") or next_launch.get("name"))
+        # Avoids returning No description string if description is missing. Try name and then pass empty string to avoid error if name doesn't exist.
+        checkdesc = ( 
+                next_launch.get("mission", {}).get("description")
+                or next_launch.get("name")
+                or ""
+            )
+       # Grab mission patch from program > mission_patches
+        mission_patch = None
+        programs = next_launch.get("program", [])
+        if programs and isinstance(programs, list):
+            first_program = programs[0]
+            patches = first_program.get("mission_patches", [])
+            if patches and isinstance(patches, list) and "image_url" in patches[0]:
+                mission_patch = patches[0]["image_url"]
+
+        #Call get payload info function passing in checkdesc to grab mission description or name and filter using regex.
+        payload_info = get_payload_info(checkdesc)
         #Dict to map name to a key value for use in index. {} is used to stop key errors for nested data
         mission = {
             "name": next_launch["name"],
@@ -50,7 +66,8 @@ def getUpcomingMissions():
             "payload":payload_info,
             "payload_destination":next_launch.get("mission",{}).get("orbit",{}).get("name","No orbit information available."),
             "rocket":next_launch.get("rocket",{}).get("configuration",{}).get("full_name","Rocket Information Unavailable"),
-            "launch_pad":next_launch.get("pad",{}).get("name", "No Launch Pad information available.")
+            "launch_pad":next_launch.get("pad",{}).get("name"),
+            "mission_patch":mission_patch
         }
       
         return mission
@@ -71,7 +88,7 @@ def get_payload_info(data):
     # Regex Pattern one to Look for brand names and payloads, note r in the pattern tells python to not treat backslashes as escape characters
     patternMatch = re.search(r'(\d+)\s+(Starlink|OneWeb|Iridium|Skynet|NASA|payloads?)',data,re.IGNORECASE)
     if patternMatch:
-        return f"{patternMatch.group(1)} {patternMatch.group(2).captialize}"
+        return f"{patternMatch.group(1)} {patternMatch.group(2).capitalize()}"
     
     #Regex pattern 2 to look for Starlink group launches
     patternMatchTwo = re.search(r'(Starlink\s+Group\s+\d+-\d+)', data, re.IGNORECASE)

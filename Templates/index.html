@@ -30,7 +30,11 @@ id="landing-body"
 <button class="close-mission" onclick="toggleMission()">✖</button>
   <h2>Mission Overview</h2>
   <div class="mission-content">
-    <img src="starlink-patch.png" alt="Starlink Patch" class="mission-patch" />
+    {% if mission.mission_patch %}
+    <img src="{{ mission.mission_patch }}" alt="Mission Patch" class="mission_patch">
+    {% else %}
+    <img src="/static/images/default_patch.svg" alt="Default Mission Patch" class="mission_patch">
+    {% endif %}
 
     <div class="mission-details">
       <div class="mission-section">

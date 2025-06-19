@@ -1,0 +1,42 @@
+{% extends layout.html %}
+{% block title %}
+Mission List
+{% endblock %}
+
+{% block main %}
+<h1>All Upcoming Spaceflight Missions</h1>
+<div class="box">
+    <div>
+        <h3>Information</h3>
+        <p>Below is a list of all the latest upcoming missions. The main homepage only shows SpaceX missions, by signing up for an account you are
+            now able to view missions from all organisations in one place and even favourite your upcoming missions to view on your account profile anytime!
+        </p>
+    </div>
+</div>
+<div class="box">
+    <table>
+        <tr>
+            <th>Mission Name</th>
+            <th>Mission Date</th>
+            <th>Company Name</th>
+            <th>Mission Description</th>
+            <th>Mission Payload</th>
+            <th>Mission Destination</th>
+            <th>Rocket</th>
+            <th>Launchpad</th>
+        </tr>
+        {% for each entry in missionList %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

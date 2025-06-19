@@ -59,7 +59,7 @@ p, a, span, div {
 
 .mission_patch
 {
-  height: 6em;
+  height: 8em;
   width: 8em;
 }
 .action_button_1
@@ -243,6 +243,14 @@ p, a, span, div {
 }
 
 /* LANDING PAGE END */
+
+/* Flexbox Layout */
+.box
+{
+  border: 2px dotted red; /*debug only */
+  display: flex;
+}
+/* Flexbox Layout End */
 
 /* MAIN FONT STYLING */
 .titillium-web-light {

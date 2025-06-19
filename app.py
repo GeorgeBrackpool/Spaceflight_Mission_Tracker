@@ -73,6 +73,11 @@ def getUpcomingMissions():
         return mission
     else:
         return None
+#App route which handles the functionality of the missions table page.    
+@app.route("/missions", methods=["GET"])
+def missions():
+    return render_template("missions.html")
+
 #Debugging only to test API's and caching
 @app.route('/clear-cache')
 def clear_cache():
@@ -99,6 +104,20 @@ def get_payload_info(data):
     patternMatchThree = re.search(r'includes\s+(\d+)\s+payloads?', data, re.IGNORECASE)
     if patternMatchThree:
         return f"{patternMatchThree.group(1)} payloads"
+    
+    # Fourth pattern to look for commonly used "a batch of satellites"
+    patternMatchFour = re.search(r'(?:a\s+)?batch\s+of\s+satellites?', data, re.IGNORECASE)
+    if patternMatchFour:
+        return "Batch of satellites"
+    
+    #Fifth Pattern to look for just satellite payloads.
+    patternMatchFive = re.search(r'(\d+)\s+satellites?', data, re.IGNORECASE)
+    if patternMatchFive:
+        return f"{patternMatchFive.group(1)} satellites"
+    
+    #Sixth pattern as a generic fallback if satellite mentioned
+    if "satellite" in data.lower():
+        return "Satellite payload"
     else:
         return "Payload is unknown."
 
